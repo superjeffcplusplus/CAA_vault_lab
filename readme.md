@@ -6,7 +6,7 @@ To install Vault, follow this [guide](https://learn.hashicorp.com/tutorials/vaul
 The PKI install also requires `jq` to parse JSON files. Install with `sudo apt install jq`. 
 
 ## Starting the server
-To start the server, make sure that the current directory is ~/vault.
+To start the server, make sure that the current working directory contains `conf` and `policies` folders with their repespective files.  
 Then run the script `server_start.sh`
 
 ## Setuping PKI
