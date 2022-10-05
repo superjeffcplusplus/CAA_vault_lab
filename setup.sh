@@ -201,6 +201,7 @@ vault write pki_int/roles/intra-dot-heigvd-dot-ch \
 vault login -method=userpass username=toto password=titi
 
 # Operations that should fail ...
+echo "---"
 echo "These operation should fail >>"
 
 echo "1. -->"
@@ -214,7 +215,7 @@ vault write pki_int/issue/intra-dot-heigvd-dot-ch \
              common_name="intra2.heig-vd.ch" \
              ttl="24h"
 echo "<< These operation should fail"
-
+echo "---"
 # Issuing new certificate for intra.heig-vd.ch
 
 intra_cert_folder=intra_heigvd_cert

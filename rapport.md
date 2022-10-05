@@ -1,5 +1,5 @@
 Jean-François Pasche  
-Octobre 2022
+Octobre 2022   
 # CAA 22-23 : Lab #1
 Ce rapport contient les réponses aux questions posées dans la consigne du laboratoire.  
 Des explications sur les scripts fournies dans le readme.
@@ -19,7 +19,7 @@ Car ce certificat est auto-signé et non révoquable. De ce fait, il doit être 
 La clef privée du certificat peut typiquement être gérée par un HSM, voire plusieurs HSM, ou alors être séparée en plusieurs morceaux stockés séparément dans différents emplacements sûrs, tels des coffres forts.
 
 ## 6.3. How would you implement this?
-Je me servirait d'un HSM pour gérer la clef. Cette dernière est générée par le device et n'en sort jamais. Ce HSM serait stocké dans un coffre fort. Il n'en serait sorti que dans la nécessité de signer le certificat d'une autorité intermédiaire.
+Je me servirais d'un HSM pour gérer la clef. Cette dernière serait donc générée par le device et n'en sortirait jamais. Ce HSM serait stocké dans un coffre fort. Il n'en serait sorti que dans la nécessité de signer le certificat d'une autorité intermédiaire.
 
 La commande suivante permet de générer une CSR pour le certificat root:
 ```bash
@@ -43,6 +43,10 @@ Pour révoquer un certificat, exécuter la commande :
 ```bash
 vault write pki_int/revoke serial_number=<serial_number>
 ```
+
+## 7. What appends if we try doing admin tasks with the toto user ? Show a screenshot.
+
+![q7](q7.png)
 
 ## 8.1. How is the root key and the encryption key used to secure Vault?
 La clef root (*root key*) est celle qui est divisée en fragments avec `shamir`. La clef de chiffrement (*encryption key*) est quant à elle utilisée pour chiffrer les données en elles-mêmes. Cette dernière est elle-mêmme chiffrée avec la clef *root*. La *root key* est reconstituée avec le *unseal process*. Elle permet ensuite de déchiffrer la clef de chiffrement, qui permet enfin de déchiffrer les données contenues dans `vault`.
